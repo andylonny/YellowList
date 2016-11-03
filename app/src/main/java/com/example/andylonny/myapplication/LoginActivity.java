@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 accessTokem = loginResult.getAccessToken();
+                btnMapa.setVisibility(View.VISIBLE);
             }
 
             @Override
