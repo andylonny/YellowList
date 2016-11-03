@@ -3,6 +3,8 @@ package com.example.andylonny.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -19,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private AccessToken accessTokem;
+    private Button btnMapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,19 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
+        btnMapa = (Button)findViewById(R.id.btn_Mapa);
+
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
